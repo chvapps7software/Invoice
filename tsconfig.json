@@ -4,10 +4,8 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    /* other options... */
-
-    /* ADD OR CHANGE THIS LINE: */
-    "checkJs": false,
+    "skipLibCheck": true,
+    "checkJs": false, // <-- This tells it not to check .js files in src/
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -17,5 +15,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["src"], // <-- This should ONLY include your app code
+  "references": [{ "path": "./tsconfig.node.json" }] // <-- This links the two configs
 }
