@@ -24,6 +24,7 @@ export const VISUAL_TEMPLATES = {
     AGREEMENT: 'Service Agreement Style',
     MODERN: 'Modern Red Style',
     FORMAL: 'Formal Classic Style',
+    WEBSITE_DESIGN: 'Website Design Style',
 };
 
 const defaultLogoUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABJCAMAAAB8a8NCAAAAmVBMVEVHcEz/gwD/gQD/gwD/gQD/gwD/gQD/gwD/gQD/gwD/gQD/gQD/gwD/gQD/gwD/gQD/gwD/gQD/gQD/gQD/gQD/gwD/gQD/gQD/gQD/gQD/gQD/gwD/gQD/gQD/gQD/gQD/gQD/gQD/gwD/gQD/gQD/gQD/gQD/gwD/gwD/gQD/gwD/gwD/gQD/gwD/gwC12B/lAAAAJnRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHx/d32f4AAAApElEQVRYw+3WSQqAMAwEUdJg3B0b3f+sDgjvRzIJDk/i4Q4uW+q5iK+S2Kq1pUUtR9iU4LdFk6F/6S91g1rC1fS8hYq4o00v+R5T9+7w2k9h8H91pBvR1D/f0oI+8tH/iP+8v2C/fK92f+7f3vCjR/9u/vXG/9jP2f94f6C/Xn2C/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c7config+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c7S9+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c7Good9+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c79+ffy2/c7-..";
@@ -32,10 +33,10 @@ const defaultLogoUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAABJCA
 const APP_DEV_TEMPLATE = {
     name: "App Development Invoice",
     data: {
-        companyName: 'DIGITAL SOLUTIONS FOR DIGITAL LIFE',
-        companyAddress: '21, Pedha Palli St, Rajarao Meda Area, Chikkala Veedhi, Vizianagaram, Andhra Pradesh-535002',
-        companyEmail: 'info@digitalsolutionsfordigitallife.com',
-        companyPhone: '9121518328',
+    companyName: 'CHVApps LLP',
+    companyAddress: 'Ganesh theatre, opposite building,\nTagarapuvalasa (531163), Visakhapatnam',
+    companyEmail: 'chvapps7@gmail.com',
+    companyPhone: '+917075531402',
         clientName: 'Organics (Client)',
         clientCompany: '',
         clientAddress: '',
@@ -58,10 +59,10 @@ const APP_DEV_TEMPLATE = {
 const DIGITAL_MARKETING_TEMPLATE = {
     name: "Digital Marketing Invoice",
     data: {
-        companyName: 'DIGITAL SOLUTIONS FOR DIGITAL LIFE',
-        companyAddress: 'Pedha Palli St, Rajarao Meda Area, Chikkala Veedhi Area, Vizianagaram, Andhra Pradesh 535002',
-        companyEmail: 'digitalsolutionsfordigitallife@gmail.com',
-        companyPhone: '9121518328',
+    companyName: 'CHVApps LLP',
+    companyAddress: 'Ganesh theatre, opposite building,\nTagarapuvalasa (531163), Visakhapatnam',
+    companyEmail: 'chvapps7@gmail.com',
+    companyPhone: '+917075531402',
         clientName: '',
         clientCompany: '',
         clientAddress: '',
@@ -80,7 +81,50 @@ const DIGITAL_MARKETING_TEMPLATE = {
     }
 };
 
-const CONTENT_TEMPLATES = [APP_DEV_TEMPLATE, DIGITAL_MARKETING_TEMPLATE];
+const WEBSITE_DESIGN_TEMPLATE = {
+    name: "Website Design Quotation",
+    data: {
+        companyName: 'CHVApps LLP',
+        companyAddress: 'Ganesh theatre, opposite building, Tagarapuvalasa (531163), Visakhapatnam',
+        companyEmail: 'chvapps7@gmail.com',
+        companyPhone: '+917075531402',
+        clientName: 'Adwitha Agros',
+        clientCompany: '',
+        clientAddress: '',
+        projectSubject: 'Website & Admin Panel',
+        invoiceTitle: 'PRICE QUOTATION',
+        date: getCurrentDate(),
+        quotationNumber: '',
+        items: [
+            {
+                service: 'Website (Static)',
+                description:
+                    'Includes: Home, About Us, Products, Services, Gallery, Contact Us. Showcases machinery, builds trust, and enables inquiries.',
+                cost: 45000,
+                quantity: 1,
+            },
+            {
+                service: 'Website & Admin (Dynamic)',
+                description:
+                    'All Static features + Admin CMS, Dynamic Lead Forms (file upload), AI Chatbot, 360 Product View, Dark Mode, and Enhanced Security.',
+                cost: 80000,
+                quantity: 1,
+            },
+            {
+                service: '3 Months Maintenance & Minor Updates (6months)',
+                description: 'Free 3 Months Maintenance & Minor Updates (6months)',
+                cost: 0,
+                quantity: 1,
+            },
+        ],
+        notes:
+            'The amount will be refunded if CHV Apps is unable to provide the service. Additional feature requests beyond scope will be charged separately. Timely inputs from the client are required to meet the timeline. Database & hosting fees must be paid directly by the client.',
+        template: VISUAL_TEMPLATES.WEBSITE_DESIGN,
+        logoSrc: defaultLogoUrl,
+    },
+};
+
+const CONTENT_TEMPLATES = [APP_DEV_TEMPLATE, DIGITAL_MARKETING_TEMPLATE, WEBSITE_DESIGN_TEMPLATE];
 
 // The main application component
 export default function App() {
@@ -200,7 +244,7 @@ export default function App() {
             <Notification message={notification.message} type={notification.type} onClose={() => setNotification({ message: '', type: '' })} />
             <div className="bg-gray-100 min-h-screen font-sans">
                 <header className="bg-white shadow-md">
-                    <div className="container mx-auto px-4 py-4"><h1 className="text-3xl font-bold text-gray-800">Digital Solutions for Digital Life</h1><p className="text-gray-500">The Future You Build, The Expertise We Bring...</p></div>
+                    <div className="container mx-auto px-4 py-4"><h1 className="text-3xl font-bold text-gray-800">CHV APPS</h1><p className="text-gray-500">Your Vision. Our Innovation.</p></div>
                 </header>
                 <main className="container mx-auto p-4 mt-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg h-fit">

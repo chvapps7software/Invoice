@@ -33,36 +33,39 @@ export const loadPdfScripts = (onSuccess: () => void, onError: (msg: string) => 
 
 // --- Watermark Function ---
 const addWatermark = (pdf: any, logo: string, pageCount: number) => {
-    // Set opacity to 10% for watermark effect (semi-transparent)
-    pdf.setGState(new pdf.GState({ opacity: 0.1 }));
-    
-    // Get page dimensions
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    
-    // Create a temporary image to get original dimensions and maintain aspect ratio
-    const img = new Image();
-    img.src = logo;
-    
-    // Fixed watermark width (medium-sized)
-    const logoWidth = 80;
-    
-    // Calculate height to maintain aspect ratio
-    // If image dimensions are available, use them; otherwise use a square ratio
-    const aspectRatio = img.naturalHeight && img.naturalWidth 
-        ? img.naturalHeight / img.naturalWidth 
-        : 1; // Default to square if dimensions not available
-    const logoHeight = logoWidth * aspectRatio;
-    
-    // Calculate center position for perfect centering
-    const x = (pdfWidth - logoWidth) / 2;
-    const y = (pdfHeight - logoHeight) / 2;
-    
-    // Add the logo as watermark centered on the page
-    pdf.addImage(logo, 'PNG', x, y, logoWidth, logoHeight);
-    
-    // Reset opacity back to normal (1.0)
-    pdf.setGState(new pdf.GState({ opacity: 1.0 }));
+    try {
+        // Some jspdf builds may not expose GState or setGState; guard accordingly
+        if (!pdf || typeof pdf.addImage !== 'function') return;
+
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+
+        const img = new Image();
+        img.src = logo;
+
+        const logoWidth = 80;
+        const aspectRatio = img.naturalHeight && img.naturalWidth ? img.naturalHeight / img.naturalWidth : 1;
+        const logoHeight = logoWidth * aspectRatio;
+        const x = (pdfWidth - logoWidth) / 2;
+        const y = (pdfHeight - logoHeight) / 2;
+
+        // Try to set low opacity if API exists; otherwise just draw the image normally
+        try {
+            if (pdf.GState && pdf.setGState) {
+                pdf.setGState(new pdf.GState({ opacity: 0.08 }));
+                pdf.addImage(logo, 'PNG', x, y, logoWidth, logoHeight);
+                pdf.setGState(new pdf.GState({ opacity: 1.0 }));
+            } else {
+                // Fallback: draw image without changing state
+                pdf.addImage(logo, 'PNG', x, y, logoWidth, logoHeight);
+            }
+        } catch (e) {
+            // If anything fails while trying to watermark, skip watermarking but don't abort PDF creation
+            console.warn('Watermark skipped due to:', e);
+        }
+    } catch (err) {
+        console.warn('addWatermark error:', err);
+    }
 };
 
 // --- PDF Generation ---
@@ -79,8 +82,14 @@ export const generatePdf = async (
         return;
     }
 
-    const { jsPDF } = window.jspdf;
-    const html2canvas = window.html2canvas;
+    // Try to resolve jsPDF constructor from known global locations
+    const html2canvas = window.html2canvas || (window as any).html2canvas;
+    const jsPDFCtor = (window.jspdf && (window.jspdf.jsPDF || (window.jspdf as any).default?.jsPDF)) || (window as any).jsPDF;
+
+    if (!jsPDFCtor) {
+        onError('Could not locate jsPDF constructor on window.');
+        return;
+    }
     const input = previewRef.current;
 
     if (!input) {
@@ -92,10 +101,11 @@ export const generatePdf = async (
         const canvas = await html2canvas(input, { 
             scale: 2, 
             useCORS: true,
-            ignoreElements: (el: Element) => el.classList.contains('no-print-footer')
+            // ignoreElements may be called with nodes that don't have classList
+            ignoreElements: (el: Element) => !!(el && 'classList' in el && (el as Element).classList.contains('no-print-footer'))
         });
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdf = new jsPDFCtor('p', 'mm', 'a4');
         
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = pdf.internal.pageSize.getHeight();
@@ -111,8 +121,8 @@ export const generatePdf = async (
         // Add the first page image
         pdf.addImage(imgData, 'PNG', 0, position, width, height);
         
-        // Add watermark to the first page
-        addWatermark(pdf, logoSrc, 1);
+    // Add watermark to the first page (best-effort)
+    try { addWatermark(pdf, logoSrc, 1); } catch(e) { console.warn('watermark error page 1', e); }
         
         heightLeft -= pdfHeight;
 
@@ -122,8 +132,8 @@ export const generatePdf = async (
             pdf.addPage();
             pdf.addImage(imgData, 'PNG', 0, position, width, height);
             
-            // Add watermark to each additional page
-            addWatermark(pdf, logoSrc, pageNumber);
+            // Add watermark to each additional page (best-effort)
+            try { addWatermark(pdf, logoSrc, pageNumber); } catch(e) { console.warn('watermark error page', pageNumber, e); }
             
             heightLeft -= pdfHeight;
             pageNumber++;

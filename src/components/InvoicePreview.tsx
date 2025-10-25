@@ -6,6 +6,7 @@ import { DigitalMarketingTemplate } from './DigitalMarketingTemplate';
 import { FormalTemplate } from './FormalTemplate';
 import { AgreementTemplate } from './AgreementTemplates';
 import { ModernTemplate } from './ModernTemplate';
+import { WebsiteTemplate } from './WebsiteTemplate';
 
 interface InvoicePreviewProps {
     data: any;
@@ -21,6 +22,8 @@ const InvoicePreview = React.forwardRef<HTMLDivElement, InvoicePreviewProps>(({ 
         switch (template) {
             case VISUAL_TEMPLATES.DIGITAL_MARKETING:
                 return <DigitalMarketingTemplate data={data} total={total} />;
+            case VISUAL_TEMPLATES.WEBSITE_DESIGN:
+                return <WebsiteTemplate data={data} subtotal={subtotal} tax={tax} total={total} />;
             case VISUAL_TEMPLATES.FORMAL:
                 return <FormalTemplate data={data} subtotal={subtotal} tax={tax} total={total} />;
             case VISUAL_TEMPLATES.AGREEMENT:
