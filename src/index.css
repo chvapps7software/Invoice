@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	:root {
+		--doc-radius: 32px;
+		--doc-shadow: 0 40px 120px -45px rgba(15, 23, 42, 0.55);
+	}
+
+	body {
+		@apply bg-gradient-to-br from-slate-50 via-white to-slate-100 min-h-screen text-slate-800 antialiased;
+	}
+}
+
+@layer components {
+	.premium-doc {
+		@apply mx-auto min-h-[297mm] w-[210mm] rounded-[var(--doc-radius)] border border-white/60 bg-white/80 px-12 py-12 shadow-[var(--doc-shadow)] backdrop-blur-2xl;
+	}
+
+	.glass-panel {
+		@apply rounded-[28px] border border-white/60 bg-white/70 p-8 shadow-xl shadow-black/5 backdrop-blur-xl;
+	}
+
+	.glass-panel-soft {
+		@apply rounded-3xl border border-white/50 bg-white/60 p-6 shadow-lg shadow-black/5 backdrop-blur-md;
+	}
+
+	.soft-divider {
+		@apply h-px w-full bg-gradient-to-r from-transparent via-slate-200/80 to-transparent;
+	}
+
+	.section-label {
+		@apply text-[11px] font-semibold uppercase tracking-[0.4em] text-slate-500/80;
+	}
+
+	.total-highlight {
+		@apply rounded-[32px] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-10 py-7 text-white shadow-2xl shadow-indigo-900/30;
+	}
+
+	.muted-card {
+		@apply rounded-2xl bg-white/70 p-5 shadow-inner shadow-white/30;
+	}
+}

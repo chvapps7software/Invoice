@@ -35,7 +35,7 @@ const InvoicePreview = React.forwardRef<HTMLDivElement, InvoicePreviewProps>(({ 
     };
 
     return (
-        <div ref={ref} className="p-8 bg-white shadow-lg rounded-xl">
+        <div ref={ref} className="premium-doc">
             {renderTemplate()}
         </div>
     );
